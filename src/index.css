@@ -54,3 +54,15 @@ ion-icon {
 .skill-count3 {
   right: 0;
 }
+
+/* a:active,
+a:visited,
+a:link {
+  text-decoration: none;
+  color: white;
+} */
+a:link,
+a:visited {
+  color: #2e3057;
+  color: whitesmoke;
+}
