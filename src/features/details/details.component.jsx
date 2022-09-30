@@ -13,8 +13,10 @@ import {
   StatsDetails,
   SkillPercent,
   PokemonDetailsWrapper,
+  ReadMore,
+  ReadMoreModal,
 } from "./details.styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import PokemonImg from "../../components/pokemon-image/pokemon-image.component";
 import IconSet from "../../components/icon-set/icon-set.component";
 import { PokemanModalContext } from "../../contexts/pokeman-modal.context";
@@ -24,7 +26,7 @@ import { COLORS } from "../../utils/colors";
 
 const Details = () => {
   const { pokemonInModal: pokemon } = useContext(PokemanModalContext);
-  console.log(pokemon);
+  const [pokemonFlavourText, setPokemonFlavourText] = useState(null);
   return (
     <Modal className="modal-abc">
       {pokemon && (
@@ -40,10 +42,24 @@ const Details = () => {
                 <IconSet />
               </TitleBar>
               <PokemanDesc>
-                {pokemon.flavouredText.substring(0, 300)}
+                {pokemon.flavouredText.substring(0, 400)}. . .
+                <ReadMore
+                  onClick={() => setPokemonFlavourText(pokemon.flavouredText)}
+                >
+                  read more
+                </ReadMore>
               </PokemanDesc>
             </ContentWrapper>
           </ImgDescription>
+          {pokemonFlavourText && (
+            <ReadMoreModal>
+              <p>{pokemonFlavourText}</p>
+              <ion-icon
+                onClick={() => setPokemonFlavourText(null)}
+                name="close-outline"
+              ></ion-icon>
+            </ReadMoreModal>
+          )}
           <PokemonDetailsWrapper>
             <PokemonDetails>
               <EachDetail>
@@ -52,11 +68,15 @@ const Details = () => {
               </EachDetail>
               <EachDetail>
                 <h4>Weight</h4>
-                <p> {pokemon.weight / 100} Kg</p>
+                <p> {pokemon.weight / 100}Kg</p>
               </EachDetail>
               <EachDetail>
                 <h4>Genders</h4>
-                <p> Yet to Code</p>
+                <p>
+                  {pokemon.genders.map((gender) => (
+                    <span key={gender}>{_.capitalize(gender)},</span>
+                  ))}
+                </p>
               </EachDetail>
               <EachDetail>
                 <h4>Egg Group</h4>
@@ -99,7 +119,7 @@ const Details = () => {
             </PokemonDetails>
           </PokemonDetailsWrapper>
           <StatsDetails>
-            <h3 style={{ color: "#2e3057" }}>Stats</h3>
+            <h3>Stats</h3>
             <StatsWrapper>
               {pokemon.statsPoke.map((stat) => {
                 return (

@@ -24,8 +24,14 @@ const getGenderLessPokes = async () => {
   );
   genders = { ...genders, genderless: genderlessPokes };
 };
-(async () =>
-  Promise.all([getMalePokes(), getFemalePokes(), getGenderLessPokes()]))();
+Promise.all([getMalePokes(), getFemalePokes(), getGenderLessPokes()]);
+const getGendersByName = (name) => {
+  let gendersByName = [];
+  if (genders.male.includes(name)) gendersByName.push("male");
+  if (genders.female.includes(name)) gendersByName.push("female");
+  if (genders.genderless.includes(name)) gendersByName.push("genderless");
+  return gendersByName;
+};
 
 export const fetchPokemanTypes = async (_url) => {
   // TODO: To remove url from component and place in env
@@ -60,7 +66,6 @@ export const fetchPokemen = async () => {
       };
     })
   );
-  console.log(pokemonData);
   return pokemonData;
 };
 
@@ -138,14 +143,4 @@ export const getPokemonByName = async (name) => {
   const bgColors = await fetchPokemanTypes(url);
 
   return { pokemonId, bgColors, name };
-};
-
-const getGendersByName = (name) => {
-  let gendersByName = [];
-  if (genders.length) {
-    if (genders.male.includes(name)) gendersByName.push("male");
-    if (genders.female.includes(name)) gendersByName.push("female");
-    if (genders.genderless.includes(name)) gendersByName.push("genderless");
-  }
-  return gendersByName;
 };

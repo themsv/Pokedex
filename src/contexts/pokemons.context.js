@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react";
-import { fetchPokemen } from "../utils/api";
+import { fetchPokemen, genders } from "../utils/api";
 export const PokemonsDataContext = createContext({
   pokemonsData: {},
   setPokemonsData: () => {},
@@ -13,7 +13,7 @@ export const PokemonsDataProvider = ({ children }) => {
       setPokemonsData(data);
     };
     getPokemen();
-  }, []);
+  }, [genders]);
   const value = { pokemonsData };
 
   return (

@@ -1,4 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const fade = keyframes`
+ 0% { opacity:0}
+ 50% {opacity:0.5}
+ 100% {  opacity: 1 }
+`;
 
 export const Modal = styled.div`
   position: absolute;
@@ -11,6 +17,8 @@ export const Modal = styled.div`
   justify-content: center;
   height: fit-content;
   z-index: 99999;
+  animation-name: ${fade};
+  animation-duration: 0.6s;
 `;
 export const DetailsContainer = styled.div`
   width: 56vw;
@@ -22,6 +30,20 @@ export const ImgDescription = styled.header`
   display: flex;
   gap: 2rem;
   margin-bottom: 32px;
+  position: relative;
+`;
+export const ReadMoreModal = styled.div`
+  position: absolute;
+  background-color: #2e3057;
+  color: white;
+  width: 52vw;
+  font-size: 10px;
+  padding: 18px;
+  border-radius: 8px;
+  z-index: 9999;
+  display: grid;
+  grid-template-columns: auto auto;
+  animation: ${fade} 0.6s ease-in;
 `;
 
 export const ContentWrapper = styled.div`
@@ -43,7 +65,7 @@ export const PokemanId = styled.div`
 `;
 
 export const PokemanDesc = styled.p`
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 export const PokemonDetailsWrapper = styled.div`
@@ -88,4 +110,10 @@ export const StatsWrapper = styled.div`
 
 export const SkillPercent = styled.div`
   width: ${(props) => `${props.widthValue}%`};
+`;
+
+export const ReadMore = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 700;
 `;
