@@ -1,6 +1,32 @@
 import axios from "axios";
 import { COLORS } from "./colors";
 
+export let genders = {};
+const getFemalePokes = async () => {
+  const { data } = await axios.get("https://pokeapi.co/api/v2/gender/1/");
+  const femalePokes = await data.pokemon_species_details.map(
+    (poke) => poke.pokemon_species.name
+  );
+  genders = { ...genders, female: femalePokes };
+};
+
+const getMalePokes = async () => {
+  const { data } = await axios.get("https://pokeapi.co/api/v2/gender/2/");
+  const malePokes = await data.pokemon_species_details.map(
+    (poke) => poke.pokemon_species.name
+  );
+  genders = { ...genders, male: malePokes };
+};
+const getGenderLessPokes = async () => {
+  const { data } = await axios.get("https://pokeapi.co/api/v2/gender/3/");
+  const genderlessPokes = await data.pokemon_species_details.map(
+    (poke) => poke.pokemon_species.name
+  );
+  genders = { ...genders, genderless: genderlessPokes };
+};
+(async () =>
+  Promise.all([getMalePokes(), getFemalePokes(), getGenderLessPokes()]))();
+
 export const fetchPokemanTypes = async (_url) => {
   // TODO: To remove url from component and place in env
   const res = await axios.get(_url);
@@ -23,15 +49,18 @@ export const fetchPokemen = async () => {
       const pokemonEvolution = await fetchEvolutionChain(
         pokemonDesc.evolutionChainUrl
       );
+      const genders = getGendersByName(eachPokeman.name);
       return {
         ...eachPokeman,
         ...pokemanDetails,
         ...pokemonDesc,
         pokemonWeakness,
         pokemonEvolution,
+        genders,
       };
     })
   );
+  console.log(pokemonData);
   return pokemonData;
 };
 
@@ -101,8 +130,6 @@ const fetchWeaknessByPokemonTypes = (types) => {
   return weak;
 };
 
-export const pokemanDetails = async (mainUrl) => {};
-
 export const getPokemonByName = async (name) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
   const { data } = await axios.get(url);
@@ -111,4 +138,14 @@ export const getPokemonByName = async (name) => {
   const bgColors = await fetchPokemanTypes(url);
 
   return { pokemonId, bgColors, name };
+};
+
+const getGendersByName = (name) => {
+  let gendersByName = [];
+  if (genders.length) {
+    if (genders.male.includes(name)) gendersByName.push("male");
+    if (genders.female.includes(name)) gendersByName.push("female");
+    if (genders.genderless.includes(name)) gendersByName.push("genderless");
+  }
+  return gendersByName;
 };

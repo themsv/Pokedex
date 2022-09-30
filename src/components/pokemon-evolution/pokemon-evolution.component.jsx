@@ -10,10 +10,12 @@ const PokemonEvolution = ({ pokemonEvolution }) => {
 
   useEffect(() => {
     const requiredPokesId = pokemonEvolution.map((poke) =>
-      poke.url.charAt(poke.url.length - 2)
+      poke.url
+        .replace("https://pokeapi.co/api/v2/pokemon-species/", "")
+        .replace("/", "")
     );
     const requiredPokes = requiredPokesId.map(
-      (pokeid) => pokemonsData[Number(pokeid) + 1]
+      (pokeid) => pokemonsData[Number(pokeid) - 1]
     );
     setPokemonsEvolution(requiredPokes);
   }, []);
@@ -38,7 +40,7 @@ export default PokemonEvolution;
 
 const PokemonEvolutionContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 `;
