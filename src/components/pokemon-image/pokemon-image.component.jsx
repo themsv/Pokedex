@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const CustomBorder = styled.div`
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23333' stroke-width='1' stroke-dasharray='6%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23333' stroke-width='1' stroke-dasharray='6%2c 6' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   border-radius: 12px;
   padding: 1px;
   display: inline-block;
@@ -17,8 +17,8 @@ const PokemonCard = styled.figure`
 `;
 
 const Pokemonimg = styled.img`
-  width: 152px;
-  height: ${(props) => props.customHeight || "176px"};
+  width: 142px;
+  height: ${(props) => props.customHeight || "160px"};
   margin-bottom: 20px;
   cursor: pointer;
 `;

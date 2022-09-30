@@ -9,7 +9,8 @@ export const Modal = styled.div`
   background-color: rgba(63, 66, 101, 0.9);
   display: flex;
   justify-content: center;
-  overflow: auto;
+  height: fit-content;
+  z-index: 99999;
 `;
 export const DetailsContainer = styled.div`
   width: 56vw;

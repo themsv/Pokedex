@@ -14,7 +14,7 @@ const Pokemon = ({ pokemon }) => {
     >
       <PokemanImg pokemon={pokemon}>
         <h3>{_.capitalize(pokemon.name)}</h3>
-        <figcaption>{formatNumber(pokemon.pokemanId)}</figcaption>
+        <figcaption>{formatNumber(pokemon.pokemonId)}</figcaption>
       </PokemanImg>
     </div>
   );
