@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../../components/navbar/navbar.component";
 import Search from "../../components/search/search.component";
-import Pokemen from "../../components/pokemen/pokemen.component";
+import Pokemons from "../../components/pokemons/pokemons.component";
 import styled from "styled-components";
 
 const DashboardContainer = styled.div`
@@ -10,12 +10,12 @@ const DashboardContainer = styled.div`
   min-height: 100vh;
 `;
 const Dashboard = () => {
-  const [searchPokeman, setSearchPokeman] = useState(null);
+  const [searchPokemon, setSearchPokemon] = useState("");
   return (
     <DashboardContainer>
       <Navbar />
-      <Search filterPokeman={setSearchPokeman} />
-      <Pokemen searchPokeman={searchPokeman} />
+      <Search searchPokemon={searchPokemon} filterPokeman={setSearchPokemon} />
+      <Pokemons searchPokemon={searchPokemon} />
     </DashboardContainer>
   );
 };

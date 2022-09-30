@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { useState } from "react";
 
-const Search = ({ filterPokeman }) => {
-  const [input, setinput] = useState("");
-  const clickHandler = () => {
-    filterPokeman(input.toLowerCase());
+const Search = ({ filterPokeman, searchPokemon }) => {
+  const onChangeHandler = (event) => {
+    filterPokeman(event.target.value.toLowerCase());
   };
 
   return (
@@ -14,10 +12,10 @@ const Search = ({ filterPokeman }) => {
         <SearchInput
           type="search"
           placeholder="Name or Number"
-          value={input}
-          onChange={(e) => setinput(e.target.value)}
+          value={searchPokemon}
+          onChange={onChangeHandler}
         />
-        <ion-icon name="search-outline" onClick={clickHandler}></ion-icon>
+        <ion-icon name="search-outline"></ion-icon>
       </SearchBoxWrapper>
     </SearchContainer>
   );

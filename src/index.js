@@ -3,11 +3,17 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { PokemanModalProvider } from "./contexts/pokeman-modal.context";
+import { PokemonsDataProvider } from "./contexts/pokemons.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <PokemonsDataProvider>
+      <PokemanModalProvider>
+        <App />
+      </PokemanModalProvider>
+    </PokemonsDataProvider>
   </React.StrictMode>
 );
 
