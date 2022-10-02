@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Search = ({ filterPokeman, searchPokemon }) => {
   const onChangeHandler = (event) => {
-    filterPokeman(event.target.value.toLowerCase());
+    filterPokeman(String(event.target.value.toLowerCase()));
   };
 
   return (

@@ -12,11 +12,14 @@ const Pokemons = ({ searchPokemon }) => {
     }
   }, [pokemonsData]);
   useEffect(() => {
-    const filteredPokes = pokemonsData.filter(
-      (pokeman) =>
+    const filteredPokes = pokemonsData.filter((pokeman) => {
+      console.log(typeof pokeman.pokemonId);
+      return (
         pokeman.name.toLowerCase().includes(searchPokemon) ||
-        String(pokeman.pokemanId).includes(searchPokemon)
-    );
+        String(pokeman.pokemonId).includes(searchPokemon)
+      );
+    });
+
     setFilteredPokemons(filteredPokes);
   }, [searchPokemon]);
   return (

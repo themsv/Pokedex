@@ -6,6 +6,7 @@ import { PokemanModalContext } from "../../contexts/pokeman-modal.context";
 
 const Pokemon = ({ pokemon }) => {
   const { setPokemonInModal } = useContext(PokemanModalContext);
+  if (!pokemon?.name) return <h4>Unable to Load the Pokeman data</h4>;
   return (
     <div
       onClick={() => {
