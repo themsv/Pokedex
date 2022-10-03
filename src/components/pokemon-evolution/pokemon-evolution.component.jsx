@@ -20,19 +20,22 @@ const PokemonEvolution = ({ pokemonEvolution }) => {
     setPokemonsEvolution(requiredPokes);
   }, []);
   return (
-    <PokemonEvolutionContainer>
-      {pokemonsEvolution &&
-        pokemonsEvolution.map((pokemon, _index) => {
-          return (
-            <>
-              <Pokemon pokemon={pokemon} />
-              {pokemonsEvolution.length !== _index + 1 && (
-                <ion-icon name="arrow-forward-outline"></ion-icon>
-              )}
-            </>
-          );
-        })}
-    </PokemonEvolutionContainer>
+    <>
+      <h3>Evolution Chain</h3>
+      <PokemonEvolutionContainer>
+        {pokemonsEvolution &&
+          pokemonsEvolution.map((pokemon, _index) => {
+            return (
+              <>
+                <Pokemon pokemon={pokemon} />
+                {pokemonsEvolution.length !== _index + 1 && (
+                  <ion-icon name="arrow-forward-outline"></ion-icon>
+                )}
+              </>
+            );
+          })}
+      </PokemonEvolutionContainer>
+    </>
   );
 };
 
