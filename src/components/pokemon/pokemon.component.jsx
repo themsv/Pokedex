@@ -11,6 +11,7 @@ const Pokemon = ({ pokemon }) => {
     <div
       onClick={() => {
         setPokemonInModal(pokemon);
+        window.scrollTo(0, 0);
       }}
     >
       <PokemanImg pokemon={pokemon}>
